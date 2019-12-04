@@ -64,4 +64,12 @@ attr_reader :id, :title, :genre, :artist_id
     SqlRunner.run(sql, values)
   end
 
+  def self.find_by_id(id)
+    sql = "SELECT * FROM albums WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values)
+    album_data = result[0]
+    return Album.new(album_data)
+  end
+
 end
