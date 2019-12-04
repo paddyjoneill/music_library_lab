@@ -32,6 +32,36 @@ attr_reader :id, :title, :genre, :artist_id
     return artist
   end
 
+  def delete()
+    sql = "DELETE FROM albums WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
 
+  def self.delete_all()
+    sql = "DELETE FROM albums"
+    SqlRunner.run(sql)
+  end
+
+  def update_title(new_title)
+    @title = new_title
+    sql = "UPDATE albums SET title = $1 WHERE id = $2"
+    values = [new_title, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def update_genre(new_genre)
+    @genre = new_genre
+    sql = "UPDATE albums SET genre = $1 WHERE id = $2"
+    values = [new_genre, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def update_artist_id(new_artist_id)
+    @artist_id = new_artist_id
+    sql = "UPDATE albums SET artist_id = $1 WHERE id = $2"
+    values = [new_artist_id, @id]
+    SqlRunner.run(sql, values)
+  end
 
 end
