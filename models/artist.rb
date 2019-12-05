@@ -32,9 +32,11 @@ class Artist
   end
 
   def delete()
-    sql = "DELETE FROM artists WHERE id = $1"
+    sql1 = "DELETE FROM albums WHERE artist_id = $1"
+    sql2 = "DELETE FROM artists WHERE id = $1"
     values = [@id]
-    SqlRunner.run(sql, values)
+    SqlRunner.run(sql1, values)
+    SqlRunner.run(sql2, values)
   end
 
   def self.delete_all()
